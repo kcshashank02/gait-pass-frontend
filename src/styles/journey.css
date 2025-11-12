@@ -1,0 +1,756 @@
+.journey-history-container {
+  max-width: 1000px;
+}
+
+.journey-history-container h1 {
+  font-size: 32px;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+}
+
+.journey-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.journey-card {
+  transition: transform 0.3s ease;
+}
+
+.journey-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.journey-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.journey-number {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 16px;
+}
+
+.journey-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.journey-route-display {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.station-info {
+  text-align: center;
+}
+
+.station-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.station-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.time-value {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.route-connector {
+  font-size: 32px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.journey-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.fare-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.fare-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--success-color);
+}
+
+.fare-calculator-card {
+  margin-top: 32px;
+}
+
+.fare-calculator-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.calculate-btn {
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.calculate-btn:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.calculate-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fare-result {
+  padding: 20px;
+  background: linear-gradient(135deg, var(--success-color), #059669);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--white);
+}
+
+.fare-result .fare-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+  color: var(--white);
+}
+
+.fare-result .fare-amount {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+@media (max-width: 768px) {
+  .journey-route-display {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .route-connector {
+    transform: rotate(90deg);
+  }
+}
+.no-stations-message {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+.no-stations-message p:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--warning-color);
+  margin-bottom: 8px;
+}
+/* Routes & Fares */
+.routes-fares-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stations-card,
+.fares-card {
+  margin-top: 24px;
+}
+
+/* Stations List */
+.stations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.station-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--light-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.station-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow);
+}
+
+.station-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.station-details h4 {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.station-details p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Fares Table */
+.fares-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fares-table thead {
+  background-color: var(--light-bg);
+}
+
+.fares-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.fares-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fares-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.fares-table tbody tr:hover {
+  background-color: var(--light-bg);
+}
+
+.station-cell {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.fare-cell {
+  font-weight: 700;
+  color: var(--success-color);
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .stations-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .fares-table {
+    min-width: 500px;
+  }
+}
+
+
+/* Routes & Fares Container */
+.routes-fares-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+}
+
+.stations-card,
+.fares-card {
+  margin-bottom: 24px;
+}
+
+/* Stations List */
+.stations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.station-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--light-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.station-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow);
+}
+
+.station-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.station-details h4 {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.station-details p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Fares Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.fares-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fares-table thead {
+  background-color: var(--light-bg);
+}
+
+.fares-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.fares-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fares-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.fares-table tbody tr:hover {
+  background-color: var(--light-bg);
+}
+
+.fares-table tbody tr.inactive-route {
+  opacity: 0.5;
+  background-color: #fee2e2;
+}
+
+.route-cell {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.route-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #e0e7ff;
+  color: var(--primary-color);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.station-cell {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.distance-cell {
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-align: center;
+}
+
+.fare-cell {
+  font-weight: 700;
+  color: var(--success-color);
+  font-size: 18px;
+  text-align: right;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.refresh-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .stations-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .fares-table {
+    min-width: 600px;
+  }
+}
+/* Routes & Fares Container */
+.routes-fares-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+}
+
+.stations-card,
+.fares-card {
+  margin-bottom: 24px;
+}
+
+/* Stations List */
+.stations-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.station-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--light-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.station-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: var(--shadow);
+}
+
+.station-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  height: 60px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 50%;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px;
+}
+
+.station-details h4 {
+  font-size: 16px;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.station-details p {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Fares Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.fares-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.fares-table thead {
+  background-color: var(--light-bg);
+}
+
+.fares-table th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.fares-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fares-table tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+.fares-table tbody tr:hover {
+  background-color: var(--light-bg);
+}
+
+.fares-table tbody tr.inactive-route {
+  opacity: 0.5;
+  background-color: #fee2e2;
+}
+
+/* Station Cell Styling */
+.station-cell-start,
+.station-cell-end {
+  min-width: 200px;
+}
+
+.station-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.station-code-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  min-width: 55px;
+}
+
+.station-name {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* Arrow Cell */
+.arrow-cell {
+  text-align: center;
+  width: 60px;
+  padding: 16px 8px;
+}
+
+.bidirectional-arrow {
+  font-size: 24px;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.distance-cell {
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fare-cell {
+  font-weight: 700;
+  color: var(--success-color);
+  font-size: 18px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.refresh-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+}
+
+.refresh-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .stations-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .fares-table {
+    min-width: 600px;
+  }
+  
+  .station-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+/* Journey Route Display */
+.journey-route-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.station-info {
+  flex: 1;
+  text-align: center;
+}
+
+.station-label {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.station-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 8px 0;
+}
+
+.time-value {
+  font-size: 13px;
+  color: #4b5563;
+  margin-top: 4px;
+}
+
+.route-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+}
+
+.route-line {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  position: relative;
+}
+
+.route-arrow {
+  font-size: 20px;
+  color: #6366f1;
+  margin-left: -4px;
+}
+
+.journey-duration {
+  text-align: center;
+  padding: 8px;
+  background: #eff6ff;
+  border-radius: 6px;
+  margin: 12px 0;
+  font-size: 13px;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.journey-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 16px;
+}
+
+.fare-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.fare-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #059669;
+}
+
+.journey-status.completed {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.journey-status.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
