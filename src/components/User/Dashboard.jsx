@@ -26,11 +26,11 @@ const Dashboard = () => {
   const entryStationCode = currentJourney?.entry_station_code || 
                            currentJourney?.entryStationCode ||
                            currentJourney?.entrystationcode;
-  
+
   const entryTime = currentJourney?.entry_time || 
                     currentJourney?.entryTime ||
                     currentJourney?.entrytime;
-  
+    console.log("entryTime raw:", entryTime);
   const exitTime = currentJourney?.exit_time || 
                    currentJourney?.exitTime ||
                    currentJourney?.exittime;

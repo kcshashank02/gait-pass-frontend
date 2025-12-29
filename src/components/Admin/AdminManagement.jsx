@@ -16,8 +16,8 @@ const AdminManagement = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    first_name: '',  // ✅ Changed from fullname
-    last_name: ''    // ✅ Added last_name
+    first_name: '', 
+    last_name: ''    
   });
 
   useEffect(() => {
@@ -118,7 +118,6 @@ const AdminManagement = () => {
                 <tr>
                   <th>Email</th>
                   <th>Full Name</th>
-                  <th>Phone</th>
                   <th>Created At</th>
                   <th>Status</th>
                 </tr>
@@ -128,7 +127,6 @@ const AdminManagement = () => {
                   <tr key={admin.id || admin._id}>
                     <td>{admin.email}</td>
                     <td>{getFullName(admin)}</td>  {/* ✅ Fixed */}
-                    <td>{admin.phone || 'N/A'}</td>
                     <td>{formatDate(admin.created_at || admin.createdat)}</td>
                     <td>
                       <span className="status-badge active">Active</span>
